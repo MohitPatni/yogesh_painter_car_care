@@ -25,7 +25,7 @@ SECRET_KEY = '2*kv#)i7l!ik*hkf%q=+mrdb(wk&p)&x5fvu3j0whmkc8w3kxk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '*']
 
 
 # Application definition
@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'end_user',
     'rest_framework',
+    'corsheaders',
 ]
 
+ROOT_URLCONF = 'yogesh_painter_car_care.urls'
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +55,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'yogesh_painter_car_care.urls'
+#ROOT_URLCONF = 'yogesh_painter_car_care.urls'
+
 
 TEMPLATES = [
     {
@@ -75,12 +80,6 @@ WSGI_APPLICATION = 'yogesh_painter_car_care.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -117,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE =  'Asia/Kolkata'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -131,6 +130,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL =  '/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-REST_FRAMEWORK={ 'DEFAULT_FILTER_BACKENDS':('rest_framework.filters.SearchFilter',)}
+REST_FRAMEWORK = {'DEFAULT_FILTER_BACKENDS': (
+    'rest_framework.filters.SearchFilter',)}
+
+# Added manually
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost',
+    'http://127.0.0.1',
+    'http://127.0.0.1'
+]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     )
+# }

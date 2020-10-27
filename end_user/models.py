@@ -6,7 +6,7 @@ class MasterService(models.Model):
     created_date = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     is_deleted = models.IntegerField(default=0)
-
+ 
 
 class Service(models.Model):
     master_service = models.ForeignKey(
@@ -14,7 +14,7 @@ class Service(models.Model):
     tital = models.CharField(max_length=100)
     service_name = models.CharField(max_length=100)
     desc = models.TextField()
-    image_file =models.ImageField(upload_to='myphoto/%Y/%m/%d/', null=True, max_length=255)
+    image_file =models.ImageField(upload_to='img', null=True, max_length=255)
     is_public_image = models.IntegerField(default=0)
     particular_work = models.JSONField( null=True)
     created_date = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -26,7 +26,7 @@ class PhotoGallary(models.Model):
     master_service = models.ForeignKey(
         MasterService, on_delete=models.CASCADE)
     tital = models.CharField(max_length=100)
-    image_file = models.ImageField(upload_to='myphoto/%Y/%m/%d/', null=True, max_length=255)
+    image_file = models.ImageField(upload_to='img', null=True, max_length=255)
     created_date = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     is_deleted = models.IntegerField(default=0)
@@ -42,11 +42,11 @@ class Enquiry(models.Model):
     is_deleted = models.IntegerField(default=0)
 
 
-class ServiceEnquiy(models.Model):
+class ServiceEnquiry(models.Model):
     enquiry = models.ForeignKey(
-        Enquiry, on_delete=models.CASCADE )
+        Enquiry, on_delete=models.CASCADE , related_name='service_enquiry' )
     Service = models.ForeignKey(
-        Service, on_delete=models.CASCADE)
+        Service, on_delete=models.CASCADE,related_name='service',null=True, blank=True)
     created_date = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     is_deleted = models.IntegerField(default=0)

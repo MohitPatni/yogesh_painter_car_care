@@ -27,7 +27,7 @@ class ServiceEnquiyAdmin(admin.ModelAdmin):
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'desc', 'rating',
+    list_display = ('id', 'name', 'email', 'desc', 'rating','is_show',
                     'created_date', 'updated_date', 'is_deleted')
 
 
@@ -59,7 +59,7 @@ admin.site.register(models.MasterService,MasterServiceAdmin)
 admin.site.register(models.Service,ServiceAdmin)
 admin.site.register(models.PhotoGallary,PhotoGallaryAdmin)
 admin.site.register(models.Enquiry,EnquiryAdmin)
-admin.site.register(models.ServiceEnquiy,ServiceEnquiyAdmin)
+admin.site.register(models.ServiceEnquiry,ServiceEnquiyAdmin)
 admin.site.register(models.Feedback,FeedbackAdmin)
 admin.site.register(models.Offer,OfferAdmin)
 admin.site.register(models.Customer,CustomerAdmin)
